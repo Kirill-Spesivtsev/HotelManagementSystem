@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\images\Новая папка\**" />
+    <Content Remove="wwwroot\images\Новая папка\**" />
+    <EmbeddedResource Remove="wwwroot\images\Новая папка\**" />
+    <None Remove="wwwroot\images\Новая папка\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CoreAdmin" Version="2.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.16" />

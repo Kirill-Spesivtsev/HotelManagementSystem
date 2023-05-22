@@ -7,9 +7,12 @@ namespace HotelManagementSystem.Models
         [Key]
         public int ApartmentId {get; set;}
 
+        [Required]
         public int ApartmentName {get; set;}
 
-        public int DaysOccupied {get; set;} = 1;
+        public bool IsFree {get; set;} = true;
+
+        public string ImageUrl {get; set;} = @"~/images/rooms/default_room.jpg";
 
         public int ApartmentTypeId {get; set;}
         public ApartmentType EnrollmentTypeGuest {get; set;}

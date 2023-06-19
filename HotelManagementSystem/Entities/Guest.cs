@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace HotelManagementSystem.Models
 {
@@ -12,7 +13,24 @@ namespace HotelManagementSystem.Models
 
         public double Discont {get; set;} = 0d;
 
-        public int PassportInfoId {get; set;}
-        public PassportInfo PassportInfo {get; set;}
+        [Required(ErrorMessage ="Please enter your first name")]
+        public string FirtstName {get; set;}
+
+        [Required(ErrorMessage ="Please enter your last name")]
+        public string LastName {get; set;}
+
+        [Required(ErrorMessage ="Please enter passport number")]
+        public string IdNumber {get; set;}
+
+        public string? Country {get; set;}
+
+        public DateTime? BirthDate {get; set;}
+
+        [Required(ErrorMessage ="Please select your gender")]
+        public int GenderId {get; set;}
+        public Gender Gender {get; set;}
+
+        [JsonIgnore]
+        public List<EnrollmentGuest> EnrollmentGuests {get; set; }
     }
 }

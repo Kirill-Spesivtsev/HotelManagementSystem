@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace HotelManagementSystem.Models
 {
@@ -8,5 +9,6 @@ namespace HotelManagementSystem.Models
         public int ServiceId {get; set;}
 
         public double Price {get; set;}
+
     }
 }

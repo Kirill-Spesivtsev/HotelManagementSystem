@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace HotelManagementSystem.Models
 {
@@ -10,5 +11,8 @@ namespace HotelManagementSystem.Models
         [Required]
         [MaxLength(70)]   
         public string GenderName {get; set;}
+
+        [JsonIgnore]
+        public List<Guest> Guests {get; set; }
     }
 }

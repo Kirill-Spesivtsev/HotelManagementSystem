@@ -128,7 +128,7 @@ namespace HotelManagementSystem.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Invalid password. Please try again.");
                     return Page();
                 }
             }

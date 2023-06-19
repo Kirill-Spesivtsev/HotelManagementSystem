@@ -1,0 +1,83 @@
+﻿@model IEnumerable<HotelManagementSystem.Models.Service>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="full-height transparent-block">
+    
+    <div class="pt-2 pb-2 control-row">
+        <a asp-controller="Index" asp-action="Index" class="btn btn-primary leaned-left">Back</a>
+        <a asp-action="Create" class="btn btn-success leaned-right">Create</a>
+    </div>
+
+    <div class="row form-row">
+        <div class="col-md-12">
+            <div id="t_list" class="entities-grid-container p-3">
+                <ejs-grid id="entities_grid" dataSource="@Model" allowGrouping="false" allowSorting="true" allowFiltering="true" 
+                          allowPaging="false" allowSelection="true" excelExportComplete="excelExportComplete" 
+                          allowExcelExport="true" created="entities_grid_created" toolbarClick="toolbarClick" gridLines="Both"
+                          toolbar="@(new List<string>() {"ExcelExport"})"  >
+                    <e-grid-groupsettings columns="@(new string[] {"Date"})" showUngroupButton="false" showGroupedColumn="true"></e-grid-groupsettings>
+                    <e-grid-filtersettings mode="Immediate" showFilterBarOperator="true" type="Excel" showFilterBarStatus="true"></e-grid-filtersettings>
+                    <e-grid-pagesettings pageSize="20"></e-grid-pagesettings>
+                    <e-grid-columns>
+                        <e-grid-column headerText="Name" field="Name" textAlign="Center" width="150px"></e-grid-column>
+                        <e-grid-column headerText="Info" field="Info" textAlign="Center" width="200px"></e-grid-column>
+                        <e-grid-column headerText="Price" field="Price" textAlign="Center" width="140px"></e-grid-column>
+                        <e-grid-column headerText="Type" field="ServiceType.TypeName" textAlign="Center" width="100px"></e-grid-column>
+                        <e-grid-column headerText="Actions" template="#actionColumnTemplate" textAlign="Center" width="80px"></e-grid-column>
+                    </e-grid-columns>
+                </ejs-grid>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<script id="actionColumnTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start edit-block">
+        <a class="btn btn-sm no-a-decoration" href="/Services/Edit/${ServiceId}">
+            <i class="fa-solid fa-pen fa-lg"></i>
+        </a>
+        <form action="/Services/Delete/${ServiceId}" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+            onclick="return confirm(&quot;Are sure to delete this record?&quot;)">
+                <i class="fa-solid fa-trash-can fa-lg"></i>
+            </button>
+        </form>
+    </div>
+</script>
+
+<script>
+    function toolbarClick(args) {
+        var gridObj = document.getElementById("entities_grid").ej2_instances[0];
+        if (args.item.id === 'entities_grid_excelexport') {
+            //this.columns[3].visible = false;
+            gridObj.showSpinner();
+            gridObj.excelExport();
+        }
+    }
+
+    function excelExportComplete(args) {
+        this.hideSpinner();
+    }
+</script>
+
+<script>
+    function before_export(parameters) {
+        var gridObj = document.getElementById("entities_grid").ej2_instances[0];
+        gridObj.setAttribute("allowGrouping","false");
+    }
+</script>
+
+<script>
+    function entities_grid_created() {
+        var toolbar = this.element.querySelector('.e-toolbar');
+        this.element.appendChild(toolbar);
+    }
+</script>

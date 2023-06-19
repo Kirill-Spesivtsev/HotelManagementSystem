@@ -4,68 +4,85 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ApartmentName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsFree)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EnrollmentTypeGuest)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApartmentCategory)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApartmentStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApartmentDailyPrice)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApartmentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsFree)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnrollmentTypeGuest.ApartmentTypeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApartmentCategory.ApartmentCategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApartmentStatus.ApartmentStatusId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApartmentDailyPrice.ApartmentDailyPriceId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ApartmentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ApartmentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ApartmentId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="full-height transparent-block">
+    
+    <div class="pt-2 pb-2 control-row">
+        <a asp-controller="Index" asp-action="Index" class="btn btn-primary leaned-left">Back</a>
+        <a asp-action="Create" class="btn btn-success leaned-right">Create</a>
+    </div>
+
+    <div class="row form-row">
+        <div class="col-md-12">
+            <div id="t_list" class="entities-grid-container p-3">
+                <ejs-grid id="entities_grid" dataSource="@Model" allowGrouping="false" allowSorting="true" allowFiltering="true" 
+                          allowPaging="false" allowSelection="true" excelExportComplete="excelExportComplete" 
+                          allowExcelExport="true" created="entities_grid_created" toolbarClick="toolbarClick" gridLines="Both"
+                          toolbar="@(new List<string>() {"ExcelExport"})"  >
+                    <e-grid-groupsettings columns="@(new string[] {"Date"})" showUngroupButton="false" showGroupedColumn="true"></e-grid-groupsettings>
+                    <e-grid-filtersettings mode="Immediate" showFilterBarOperator="true" type="Excel" showFilterBarStatus="true"></e-grid-filtersettings>
+                    <e-grid-pagesettings pageSize="20"></e-grid-pagesettings>
+                    <e-grid-columns>
+                        <e-grid-column headerText="Name" field="ApartmentName" textAlign="Center" width="150px"></e-grid-column>
+                        <e-grid-column headerText="Description" field="Description" textAlign="Center" width="200px"></e-grid-column>
+                        <e-grid-column headerText="Image URL" field="ImageUrl" textAlign="Center" width="150px"></e-grid-column>
+                        <e-grid-column headerText="Daily Price" field="DailyPrice" textAlign="Center" width="140px"></e-grid-column>
+                        <e-grid-column headerText="Type" field="ApartmentType.TypeName" textAlign="Center" width="100px"></e-grid-column>
+                        <e-grid-column headerText="Category" field="ApartmentCategory.CategoryName" textAlign="Center" width="120px"></e-grid-column>
+                        <e-grid-column headerText="Status" field="ApartmentStatus.StatusName" textAlign="Center" width="100px"></e-grid-column>
+                        <e-grid-column headerText="Actions" template="#actionColumnTemplate" textAlign="Center" width="80px"></e-grid-column>
+                    </e-grid-columns>
+                </ejs-grid>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<script id="actionColumnTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start edit-block">
+        <a class="btn btn-sm no-a-decoration" href="/Apartments/Edit/${ApartmentId}">
+            <i class="fa-solid fa-pen fa-lg"></i>
+        </a>
+        <form action="/Apartments/Delete/${ApartmentId}" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+            onclick="return confirm(&quot;Are sure to delete this record?&quot;)">
+                <i class="fa-solid fa-trash-can fa-lg"></i>
+            </button>
+        </form>
+    </div>
+</script>
+
+<script>
+    function toolbarClick(args) {
+        var gridObj = document.getElementById("entities_grid").ej2_instances[0];
+        if (args.item.id === 'entities_grid_excelexport') {
+            //this.columns[3].visible = false;
+            gridObj.showSpinner();
+            gridObj.excelExport();
+        }
+    }
+
+    function excelExportComplete(args) {
+        this.hideSpinner();
+    }
+</script>
+
+<script>
+    function before_export(parameters) {
+        var gridObj = document.getElementById("entities_grid").ej2_instances[0];
+        gridObj.setAttribute("allowGrouping","false");
+    }
+</script>
+
+<script>
+    function entities_grid_created() {
+        var toolbar = this.element.querySelector('.e-toolbar');
+        this.element.appendChild(toolbar);
+    }
+</script>

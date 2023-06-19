@@ -9,6 +9,7 @@ namespace HotelManagementSystem.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
 
         public DbSet<Apartment> Apartments { get; set; }
@@ -21,15 +22,10 @@ namespace HotelManagementSystem.Data
         public DbSet<EnrollmentType> EnrollmentTypes { get; set; }
         public DbSet<Gender> Genders { get; set; }
         public DbSet<Guest> Guests { get; set; }
-        public DbSet<PassportInfo> PassportInfo { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<ServiceType> ServiceTypes { get; set; }
         public DbSet<ServicePrice> ServicePrices { get; set; }
 
-
-
-
-       
 
     }
 }

@@ -4,60 +4,74 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Apartment</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ApartmentId" />
-            <div class="form-group">
-                <label asp-for="ApartmentName" class="control-label"></label>
-                <input asp-for="ApartmentName" class="form-control" />
-                <span asp-validation-for="ApartmentName" class="text-danger"></span>
+<section class="full-height">
+    <div class="row form-row">
+        <div class="col-md-10">
+            <div class="container-border p-3 mt-4 mb-4">
+                <div class="container-body">
+                    <h3 class="mb-2 pt-2 text-center">Edit Apartment</h3>
+                    <hr />
+                    <div id="t_list" class="p-3">
+                        <form asp-action="Edit" asp-controller="Apartments">
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-4">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input type="hidden" asp-for="ApartmentId" />
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="ApartmentName" class="form-control" />
+                                        <label asp-for="ApartmentName" class="control-label"></label>
+                                        <span asp-validation-for="ApartmentName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="ImageUrl" class="form-control" />
+                                        <label asp-for="ImageUrl" class="control-label"></label>
+                                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <textarea asp-for="Description" class="form-control" placeholder="Description" style="height: 140px"></textarea>
+                                        <label asp-for="Description" class="control-label"></label>
+                                        <span asp-validation-for="Description" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="DailyPrice" type="number" step="0.01" class="form-control" />
+                                        <label asp-for="DailyPrice" class="control-label"></label>
+                                        <span asp-validation-for="DailyPrice" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <select asp-for="ApartmentTypeId" class="form-select" asp-items="ViewBag.ApartmentTypeId"></select>
+                                        <label asp-for="ApartmentTypeId" class="control-label"></label>
+                                        <span asp-validation-for="ApartmentTypeId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <select asp-for="ApartmentCategoryId" class="form-select" asp-items="ViewBag.ApartmentCategoryId"></select>
+                                        <label asp-for="ApartmentCategoryId" class="control-label"></label>
+                                        <span asp-validation-for="ApartmentCategoryId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <select asp-for="ApartmentStatusId" class="form-select" asp-items="ViewBag.ApartmentStatusId"></select>
+                                        <label asp-for="ApartmentStatusId" class="control-label"></label>
+                                        <span asp-validation-for="ApartmentStatusId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <div class="centered-content mt-5 mb-3">
+                                <a asp-action="Index" class="btn btn-info me-3 w-25">Back</a>
+                                <input type="submit" value="Save" class="btn btn-success w-25"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsFree" /> @Html.DisplayNameFor(model => model.IsFree)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageUrl" class="control-label"></label>
-                <input asp-for="ImageUrl" class="form-control" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApartmentTypeId" class="control-label"></label>
-                <select asp-for="ApartmentTypeId" class="form-control" asp-items="ViewBag.ApartmentTypeId"></select>
-                <span asp-validation-for="ApartmentTypeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApartmentCategoryId" class="control-label"></label>
-                <select asp-for="ApartmentCategoryId" class="form-control" asp-items="ViewBag.ApartmentCategoryId"></select>
-                <span asp-validation-for="ApartmentCategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApartmentStatusId" class="control-label"></label>
-                <select asp-for="ApartmentStatusId" class="form-control" asp-items="ViewBag.ApartmentStatusId"></select>
-                <span asp-validation-for="ApartmentStatusId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApartmentDailyPriceId" class="control-label"></label>
-                <select asp-for="ApartmentDailyPriceId" class="form-control" asp-items="ViewBag.ApartmentDailyPriceId"></select>
-                <span asp-validation-for="ApartmentDailyPriceId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

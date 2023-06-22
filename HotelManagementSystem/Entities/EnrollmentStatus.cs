@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HotelManagementSystem.Models
 {
-    public class EnrollmentType
+    public class EnrollmentStatus
     {
         [Key]
-        public int EnrollmentTypeId {get; set;}
+        public int EnrollmentStatusId {get; set;}
 
         [Required]
         [MaxLength(30)]
@@ -14,5 +14,6 @@ namespace HotelManagementSystem.Models
 
         [JsonIgnore]
         public List<Enrollment> Enrollments {get; set; }
+    
     }
 }

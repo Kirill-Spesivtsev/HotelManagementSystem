@@ -27,7 +27,7 @@ namespace HotelManagementSystem
         }
 
         // GET: Services/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Services == null)
             {
@@ -88,7 +88,7 @@ namespace HotelManagementSystem
         // POST: Services/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ServiceId,Name,Info,Price,ServiceTypeId")] Service service)
+        public async Task<IActionResult> Edit(Guid id, [Bind("ServiceId,Name,Info,Price,ServiceTypeId")] Service service)
         {
             if (id != service.ServiceId)
             {
@@ -121,7 +121,7 @@ namespace HotelManagementSystem
         }
 
         // GET: Services/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Services == null)
             {
@@ -158,7 +158,7 @@ namespace HotelManagementSystem
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ServiceExists(int id)
+        private bool ServiceExists(Guid id)
         {
           return (_context.Services?.Any(e => e.ServiceId == id)).GetValueOrDefault();
         }

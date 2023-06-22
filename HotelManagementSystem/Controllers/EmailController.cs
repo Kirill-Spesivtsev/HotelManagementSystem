@@ -24,7 +24,7 @@ namespace HotelManagementSystem.Controllers
         [HttpGet]
         public async Task<IActionResult> Send()
         {
-            var message = new Message(new string[] { "ksby8819@gmail.com" }, "Smart Hotel Service", "Your email code", null);
+            var message = new Message(new string[] { "ksby8819@gmail.com" }, "Smart Hotel Service", "Your email code...", null);
             await _emailSender.SendEmailAsync(message);
             return View();
         }

@@ -6,12 +6,12 @@ namespace HotelManagementSystem.Models
     public class Guest
     {
         [Key]
-        public int GuestId {get; set;}
+        public Guid GuestId {get; set;}
 
         [MaxLength(15)]
         public string? PhoneNumber {get; set;}
 
-        public double Discont {get; set;} = 0d;
+        public double Discont {get; set;} = 5d;
 
         [Required(ErrorMessage ="Please enter your first name")]
         public string FirtstName {get; set;}
@@ -22,6 +22,8 @@ namespace HotelManagementSystem.Models
         [Required(ErrorMessage ="Please enter passport number")]
         public string IdNumber {get; set;}
 
+        [MaxLength(20)]
+        public string? User {get; set;}
         public string? Country {get; set;}
 
         public DateTime? BirthDate {get; set;}

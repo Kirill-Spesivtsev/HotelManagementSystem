@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace HotelManagementSystem.Data.Migrations
+namespace HotelManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230619081140_Mig13")]
-    partial class Mig13
+    [Migration("20230621173711_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,11 +26,9 @@ namespace HotelManagementSystem.Data.Migrations
 
             modelBuilder.Entity("HotelManagementSystem.Models.Apartment", b =>
                 {
-                    b.Property<int>("ApartmentId")
+                    b.Property<Guid>("ApartmentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ApartmentId"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("ApartmentCategoryId")
                         .HasColumnType("int");
@@ -139,17 +137,15 @@ namespace HotelManagementSystem.Data.Migrations
 
             modelBuilder.Entity("HotelManagementSystem.Models.Enrollment", b =>
                 {
-                    b.Property<int>("EnrollmentId")
+                    b.Property<Guid>("EnrollmentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentId"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("AdultsNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("ApartmentId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ApartmentId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("BookingOnly")
                         .HasColumnType("bit");
@@ -157,7 +153,7 @@ namespace HotelManagementSystem.Data.Migrations
                     b.Property<int>("ChildrenNumber")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Created")
+                    b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateEnd")
@@ -183,20 +179,18 @@ namespace HotelManagementSystem.Data.Migrations
 
             modelBuilder.Entity("HotelManagementSystem.Models.EnrollmentGuest", b =>
                 {
-                    b.Property<int>("EnrollmentGuestId")
+                    b.Property<Guid>("EnrollmentGuestId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentGuestId"), 1L, 1);
-
-                    b.Property<DateTime>("Created")
+                    b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EnrollmentId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("EnrollmentId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("GuestId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("GuestId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("EnrollmentGuestId");
 
@@ -204,25 +198,23 @@ namespace HotelManagementSystem.Data.Migrations
 
                     b.HasIndex("GuestId");
 
-                    b.ToTable("EnrollmentGuest");
+                    b.ToTable("EnrollmentGuests");
                 });
 
             modelBuilder.Entity("HotelManagementSystem.Models.EnrollmentService", b =>
                 {
-                    b.Property<int>("EnrollmentServiceId")
+                    b.Property<Guid>("EnrollmentServiceId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EnrollmentServiceId"), 1L, 1);
-
-                    b.Property<DateTime>("Created")
+                    b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EnrollmentId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("EnrollmentId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ServiceId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("EnrollmentServiceId");
 
@@ -270,11 +262,9 @@ namespace HotelManagementSystem.Data.Migrations
 
             modelBuilder.Entity("HotelManagementSystem.Models.Guest", b =>
                 {
-                    b.Property<int>("GuestId")
+                    b.Property<Guid>("GuestId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GuestId"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("datetime2");
@@ -313,11 +303,9 @@ namespace HotelManagementSystem.Data.Migrations
 
             modelBuilder.Entity("HotelManagementSystem.Models.Service", b =>
                 {
-                    b.Property<int>("ServiceId")
+                    b.Property<Guid>("ServiceId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceId"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Info")
                         .HasMaxLength(600)

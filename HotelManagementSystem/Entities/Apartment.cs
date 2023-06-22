@@ -5,11 +5,15 @@ namespace HotelManagementSystem.Models
     public class Apartment
     {
         [Key]
-        public int ApartmentId {get; set;}
+        public Guid ApartmentId {get; set;}
 
-        [Required(ErrorMessage = "Title is necessary")]
         [MaxLength(30)]
+        [Required(ErrorMessage = "Number is necessary")]
         public string ApartmentName {get; set;}
+
+        [MaxLength(30)]
+        [Required(ErrorMessage = "Title is necessary")]
+        public string ApartmentTitle {get; set;}
 
         [MaxLength(120)]
         public string? Description {get; set;}
@@ -17,19 +21,21 @@ namespace HotelManagementSystem.Models
         public string? ImageUrl {get; set;} = string.Empty;
 
         [Required(ErrorMessage = "Please enter the correct price")]
-        [Range(5.0, double.MaxValue,ErrorMessage ="Price should be larger than 5$")]
+        [Range(5.0, double.MaxValue,ErrorMessage = "Price should be larger than 5$")]
         public double DailyPrice {get; set;}
 
-
-        [Range(1,int.MaxValue,ErrorMessage ="Please select Apartment Type")]
+        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Please select Apartment Type")]
         public int ApartmentTypeId {get; set;}
         public ApartmentType ApartmentType {get; set;}
 
-        [Range(1,int.MaxValue,ErrorMessage ="Please select Apartment Category")]
+        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Please select Apartment Category")]
         public int ApartmentCategoryId {get; set;}
         public ApartmentCategory ApartmentCategory {get; set;}
 
-        [Range(1,int.MaxValue,ErrorMessage ="Please select Apartment Status")]
+        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Please select Apartment Status")]
         public int ApartmentStatusId {get; set;}
         public ApartmentStatus ApartmentStatus {get; set;}
     }

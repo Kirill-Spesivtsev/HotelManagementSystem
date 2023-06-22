@@ -1,5 +1,6 @@
 using EmailService;
 using HotelManagementSystem.Data;
+using HotelManagementSystem.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
@@ -13,7 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(
+builder.Services.AddDefaultIdentity<ApplicationUser>(
         options =>
         {
             options.SignIn.RequireConfirmedAccount = false;

@@ -6,7 +6,7 @@ namespace HotelManagementSystem.Models
     public class Service
     { 
         [Key]
-        public int ServiceId {get; set;}
+        public Guid ServiceId {get; set;}
 
         [Required]
         [MaxLength(60)]   

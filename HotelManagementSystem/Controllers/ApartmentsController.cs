@@ -31,7 +31,7 @@ namespace HotelManagementSystem.Controllers
         }
 
         // GET: Apartment/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Apartments == null)
             {
@@ -100,7 +100,7 @@ namespace HotelManagementSystem.Controllers
         // POST: Apartment/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ApartmentId,ApartmentName,Description,ImageUrl,DailyPrice,ApartmentTypeId,ApartmentCategoryId,ApartmentStatusId")] Apartment apartment)
+        public async Task<IActionResult> Edit(Guid id, [Bind("ApartmentId,ApartmentName,Description,ImageUrl,DailyPrice,ApartmentTypeId,ApartmentCategoryId,ApartmentStatusId")] Apartment apartment)
         {
             if (id != apartment.ApartmentId)
             {
@@ -135,7 +135,7 @@ namespace HotelManagementSystem.Controllers
         }
 
         // GET: Apartment/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Apartments == null)
             {
@@ -174,7 +174,7 @@ namespace HotelManagementSystem.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ApartmentExists(int id)
+        private bool ApartmentExists(Guid id)
         {
           return (_context.Apartments?.Any(e => e.ApartmentId == id)).GetValueOrDefault();
         }

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HotelManagementSystem.Data;
 using HotelManagementSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelManagementSystem
 {
+    [Authorize]
     public class ServicesController : Controller
     {
         private readonly ApplicationDbContext _context;

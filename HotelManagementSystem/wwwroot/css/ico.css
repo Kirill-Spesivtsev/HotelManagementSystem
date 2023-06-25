@@ -1,0 +1,619 @@
+﻿@font-face {
+    font-family: 'MobiriseIcons';
+    src: url('mobirise-icons.eot?spat4u');
+    src: url('mobirise-icons.eot?spat4u#iefix') format('embedded-opentype'), url('mobirise-icons.ttf?spat4u') format('truetype'), url('mobirise-icons.woff?spat4u') format('woff'), url('mobirise-icons.svg?spat4u#MobiriseIcons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="hmi-"], [class*=" hmi-"] {
+    font-family: MobiriseIcons !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.hmi-add-submenu:before {
+    content: "\e900";
+}
+
+.hmi-alert:before {
+    content: "\e901";
+}
+
+.hmi-align-center:before {
+    content: "\e902";
+}
+
+.hmi-align-justify:before {
+    content: "\e903";
+}
+
+.hmi-align-left:before {
+    content: "\e904";
+}
+
+.hmi-align-right:before {
+    content: "\e905";
+}
+
+.hmi-android:before {
+    content: "\e906";
+}
+
+.hmi-apple:before {
+    content: "\e907";
+}
+
+.hmi-arrow-down:before {
+    content: "\25BC";
+}
+
+.hmi-arrow-next:before {
+    content: "\e909";
+}
+
+.hmi-arrow-prev:before {
+    content: "\e90a";
+}
+
+.hmi-arrow-up:before {
+    content: "\25B2";
+}
+
+.hmi-bold:before {
+    content: "\e90c";
+}
+
+.hmi-bookmark:before {
+    content: "\e90d";
+}
+
+.hmi-bootstrap:before {
+    content: "\e90e";
+}
+
+.hmi-briefcase:before {
+    content: "\e90f";
+}
+
+.hmi-browse:before {
+    content: "\e910";
+}
+
+.hmi-bulleted-list:before {
+    content: "\e911";
+}
+
+.hmi-calendar:before {
+    content: "\e912";
+}
+
+.hmi-camera:before {
+    content: "\e913";
+}
+
+.hmi-cart-add:before {
+    content: "\e914";
+}
+
+.hmi-cart-full:before {
+    content: "\e915";
+}
+
+.hmi-cash:before {
+    content: "\e916";
+}
+
+.hmi-change-style:before {
+    content: "\e917";
+}
+
+.hmi-chat:before {
+    content: "\e918";
+}
+
+.hmi-clock:before {
+    content: "\e919";
+}
+
+.hmi-close:before {
+    content: "\e91a";
+}
+
+.hmi-cloud:before {
+    content: "\e91b";
+}
+
+.hmi-code:before {
+    content: "\e91c";
+}
+
+.hmi-contact-form:before {
+    content: "\e91d";
+}
+
+.hmi-credit-card:before {
+    content: "\e91e";
+}
+
+.hmi-cursor-click:before {
+    content: "\e91f";
+}
+
+.hmi-cust-feedback:before {
+    content: "\e920";
+}
+
+.hmi-database:before {
+    content: "\e921";
+}
+
+.hmi-delivery:before {
+    content: "\e922";
+}
+
+.hmi-desktop:before {
+    content: "\e923";
+}
+
+.hmi-devices:before {
+    content: "\e924";
+}
+
+.hmi-down:before {
+    content: "\e925";
+}
+
+.hmi-download:before {
+    content: "\e989";
+}
+
+.hmi-drag-n-drop:before {
+    content: "\e927";
+}
+
+.hmi-drag-n-drop2:before {
+    content: "\e928";
+}
+
+.hmi-edit:before {
+    content: "\e929";
+}
+
+.hmi-edit2:before {
+    content: "\e92a";
+}
+
+.hmi-error:before {
+    content: "\e92b";
+}
+
+.hmi-extension:before {
+    content: "\e92c";
+}
+
+.hmi-features:before {
+    content: "\e92d";
+}
+
+.hmi-file:before {
+    content: "\e92e";
+}
+
+.hmi-flag:before {
+    content: "\e92f";
+}
+
+.hmi-folder:before {
+    content: "\e930";
+}
+
+.hmi-gift:before {
+    content: "\e931";
+}
+
+.hmi-github:before {
+    content: "\e932";
+}
+
+.hmi-globe:before {
+    content: "\e933";
+}
+
+.hmi-globe-2:before {
+    content: "\e934";
+}
+
+.hmi-growing-chart:before {
+    content: "\e935";
+}
+
+.hmi-hearth:before {
+    content: "\e936";
+}
+
+.hmi-help:before {
+    content: "\e937";
+}
+
+.hmi-home:before {
+    content: "\e938";
+}
+
+.hmi-hot-cup:before {
+    content: "\e939";
+}
+
+.hmi-idea:before {
+    content: "\e93a";
+}
+
+.hmi-image-gallery:before {
+    content: "\e93b";
+}
+
+.hmi-image-slider:before {
+    content: "\e93c";
+}
+
+.hmi-info:before {
+    content: "\e93d";
+}
+
+.hmi-italic:before {
+    content: "\e93e";
+}
+
+.hmi-key:before {
+    content: "\e93f";
+}
+
+.hmi-laptop:before {
+    content: "\e940";
+}
+
+.hmi-layers:before {
+    content: "\e941";
+}
+
+.hmi-left-right:before {
+    content: "\e942";
+}
+
+.hmi-left:before {
+    content: "\e943";
+}
+
+.hmi-letter:before {
+    content: "\e944";
+}
+
+.hmi-like:before {
+    content: "\e945";
+}
+
+.hmi-link:before {
+    content: "\e946";
+}
+
+.hmi-lock:before {
+    content: "\e947";
+}
+
+.hmi-login:before {
+    content: "\e948";
+}
+
+.hmi-logout:before {
+    content: "\e949";
+}
+
+.hmi-magic-stick:before {
+    content: "\e94a";
+}
+
+.hmi-map-pin:before {
+    content: "\e94b";
+}
+
+.hmi-menu:before {
+    content: "\e94c";
+}
+
+.hmi-mobile:before {
+    content: "\e94d";
+}
+
+.hmi-mobile2:before {
+    content: "\e94e";
+}
+
+.hmi-mobirise:before {
+    content: "\e94f";
+}
+
+.hmi-more-horizontal:before {
+    content: "\e950";
+}
+
+.hmi-more-vertical:before {
+    content: "\e951";
+}
+
+.hmi-music:before {
+    content: "\e952";
+}
+
+.hmi-new-file:before {
+    content: "\e953";
+}
+
+.hmi-numbered-list:before {
+    content: "\e954";
+}
+
+.hmi-opened-folder:before {
+    content: "\e955";
+}
+
+.hmi-pages:before {
+    content: "\e956";
+}
+
+.hmi-paper-plane:before {
+    content: "\e957";
+}
+
+.hmi-paperclip:before {
+    content: "\e958";
+}
+
+.hmi-photo:before {
+    content: "\e959";
+}
+
+.hmi-photos:before {
+    content: "\e95a";
+}
+
+.hmi-pin:before {
+    content: "\e95b";
+}
+
+.hmi-play:before {
+    content: "\e95c";
+}
+
+.hmi-plus:before {
+    content: "\e95d";
+}
+
+.hmi-preview:before {
+    content: "\e95e";
+}
+
+.hmi-print:before {
+    content: "\e95f";
+}
+
+.hmi-protect:before {
+    content: "\e960";
+}
+
+.hmi-question:before {
+    content: "\e961";
+}
+
+.hmi-quote-left:before {
+    content: "\e962";
+}
+
+.hmi-quote-right:before {
+    content: "\e963";
+}
+
+.hmi-refresh:before {
+    content: "\e964";
+}
+
+.hmi-responsive:before {
+    content: "\e965";
+}
+
+.hmi-right:before {
+    content: "\e966";
+}
+
+.hmi-rocket:before {
+    content: "\e967";
+}
+
+.hmi-sad-face:before {
+    content: "\e968";
+}
+
+.hmi-sale:before {
+    content: "\e969";
+}
+
+.hmi-save:before {
+    content: "\e96a";
+}
+
+.hmi-search:before {
+    content: "\e96b";
+}
+
+.hmi-setting:before {
+    content: "\e96c";
+}
+
+.hmi-setting2:before {
+    content: "\e96d";
+}
+
+.hmi-setting3:before {
+    content: "\e96e";
+}
+
+.hmi-share:before {
+    content: "\e96f";
+}
+
+.hmi-shopping-bag:before {
+    content: "\e970";
+}
+
+.hmi-shopping-basket:before {
+    content: "\e971";
+}
+
+.hmi-shopping-cart:before {
+    content: "\e972";
+}
+
+.hmi-sites:before {
+    content: "\e973";
+}
+
+.hmi-smile-face:before {
+    content: "\e974";
+}
+
+.hmi-speed:before {
+    content: "\e975";
+}
+
+.hmi-star:before {
+    content: "\e976";
+}
+
+.hmi-success:before {
+    content: "\e977";
+}
+
+.hmi-sun:before {
+    content: "\e978";
+}
+
+.hmi-sun2:before {
+    content: "\e979";
+}
+
+.hmi-tablet:before {
+    content: "\e97a";
+}
+
+.hmi-tablet-vertical:before {
+    content: "\e97b";
+}
+
+.hmi-target:before {
+    content: "\e97c";
+}
+
+.hmi-timer:before {
+    content: "\e97d";
+}
+
+.hmi-to-ftp:before {
+    content: "\e97e";
+}
+
+.hmi-to-local-drive:before {
+    content: "\e97f";
+}
+
+.hmi-touch-swipe:before {
+    content: "\e980";
+}
+
+.hmi-touch:before {
+    content: "\e981";
+}
+
+.hmi-trash:before {
+    content: "\e982";
+}
+
+.hmi-underline:before {
+    content: "\e983";
+}
+
+.hmi-unlink:before {
+    content: "\e984";
+}
+
+.hmi-unlock:before {
+    content: "\e985";
+}
+
+.hmi-up-down:before {
+    content: "\e986";
+}
+
+.hmi-up:before {
+    content: "\e987";
+}
+
+.hmi-update:before {
+    content: "\e988";
+}
+
+.hmi-upload:before {
+    content: "\e926";
+}
+
+.hmi-user:before {
+    content: "\e98a";
+}
+
+.hmi-user2:before {
+    content: "\e98b";
+}
+
+.hmi-users:before {
+    content: "\e98c";
+}
+
+.hmi-video:before {
+    content: "\e98d";
+}
+
+.hmi-video-play:before {
+    content: "\e98e";
+}
+
+.hmi-watch:before {
+    content: "\e98f";
+}
+
+.hmi-website-theme:before {
+    content: "\e990";
+}
+
+.hmi-wifi:before {
+    content: "\e991";
+}
+
+.hmi-windows:before {
+    content: "\e992";
+}
+
+.hmi-zoom-out:before {
+    content: "\e993";
+}
+
+.hmi-redo:before {
+    content: "\e994";
+}
+
+.hmi-undo:before {
+    content: "\e995";
+}

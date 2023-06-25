@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HotelManagementSystem.Data;
 using HotelManagementSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelManagementSystem.Controllers
 {
+    [Authorize]
     public class ApartmentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -51,7 +53,7 @@ namespace HotelManagementSystem.Controllers
             return View(apartment);
         }
 
-        // GET: Apartment/Create
+        // GET: Apartments/Create
         public IActionResult Create()
         {
             ViewData["ApartmentCategoryId"] = new SelectList(_context.ApartmentCategories, "ApartmentCategoryId", "CategoryName");
@@ -60,10 +62,10 @@ namespace HotelManagementSystem.Controllers
             return View();
         }
 
-        // POST: Apartment/Create
+        // POST: Apartments/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ApartmentId,ApartmentName,Description,ImageUrl,DailyPrice,ApartmentTypeId,ApartmentCategoryId,ApartmentStatusId")] Apartment apartment)
+        public async Task<IActionResult> Create([Bind("ApartmentId,ApartmentName,ApartmentTitle,Description,ImageUrl,DailyPrice,ApartmentTypeId,ApartmentCategoryId,ApartmentStatusId")] Apartment apartment)
         {
             ModelState.Clear();
             if (ModelState.IsValid)
@@ -78,8 +80,8 @@ namespace HotelManagementSystem.Controllers
             return View(apartment);
         }
 
-        // GET: Apartment/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Apartments/Edit/5
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Apartments == null)
             {
@@ -97,10 +99,10 @@ namespace HotelManagementSystem.Controllers
             return View(apartment);
         }
 
-        // POST: Apartment/Edit/5
+        // POST: Apartments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("ApartmentId,ApartmentName,Description,ImageUrl,DailyPrice,ApartmentTypeId,ApartmentCategoryId,ApartmentStatusId")] Apartment apartment)
+        public async Task<IActionResult> Edit(Guid? id, [Bind("ApartmentId,ApartmentName,ApartmentTitle,Description,ImageUrl,DailyPrice,ApartmentTypeId,ApartmentCategoryId,ApartmentStatusId")] Apartment apartment)
         {
             if (id != apartment.ApartmentId)
             {
@@ -134,7 +136,7 @@ namespace HotelManagementSystem.Controllers
             return View(apartment);
         }
 
-        // GET: Apartment/Delete/5
+        // GET: Apartments/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Apartments == null)
@@ -155,7 +157,7 @@ namespace HotelManagementSystem.Controllers
             return View(apartment);
         }
 
-        // POST: Apartment/Delete/5
+        // POST: Apartments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

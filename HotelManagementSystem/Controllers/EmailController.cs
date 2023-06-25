@@ -1,14 +1,17 @@
 ﻿using EmailService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelManagementSystem.Controllers
 {
+    [Authorize]
     public class EmailController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IEmailSender _emailSender;
         private readonly EmailConfiguration _emailConfig;
 
+        
         public EmailController(ILogger<HomeController> logger, IEmailSender emailSender, EmailConfiguration emailConfig)
         {
             _logger = logger;

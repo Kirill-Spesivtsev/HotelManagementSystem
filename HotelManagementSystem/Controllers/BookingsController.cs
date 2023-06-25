@@ -9,18 +9,22 @@ using HotelManagementSystem.Data;
 using HotelManagementSystem.Models;
 using Microsoft.AspNetCore.Identity;
 using HotelManagementSystem.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelManagementSystem
 {
+    [Authorize]
     public class BookingsController : Controller
     {
+        private readonly ILogger<BookingsController> _logger;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public BookingsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public BookingsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, ILogger<BookingsController> logger)
         {
             _context = context;
             _userManager = userManager;
+            _logger = logger;
         }
 
         // GET: Bookings
@@ -30,19 +34,69 @@ namespace HotelManagementSystem
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Bookings/Create
-        public IActionResult Create()
+        public async Task<IActionResult> ChooseApartment(DateTime dateStart, DateTime dateEnd, int guests)
         {
-            ViewData["ApartmentId"] = new SelectList(_context.Apartments, "ApartmentId", "ApartmentName");
+            //var validApartments = _context.Apartments.Include(q => q.ApartmentType);
+            
+            var apartments = _context.Apartments
+                .Include(q => q.ApartmentType)
+                .Where(q => q.ApartmentType.TypeName == guests.ToString())
+                .ToList();
+                
+            var invalidApartments = _context.Enrollments
+                    .Include(q => q.Apartment)
+                    .ThenInclude(q => q.ApartmentType)
+                .Where(q => q.Apartment.ApartmentType.TypeName == guests.ToString())
+                .GroupBy(a => a.ApartmentId)
+                .Select(g => g.OrderBy(a => a.DateEnd).Last())
+                .ToList()
+                .Where(apd => dateStart <= apd.DateEnd)
+                .Select(ap => ap.Apartment)
+                .ToList();
+
+            ViewBag.FilteredApartments = apartments.Except(invalidApartments).ToList();
+ 
+            return View("ChooseApartment", new PreBookingViewModel{DateStart = dateStart, DateEnd = dateEnd, AdultsNumber = guests});
+        }
+
+        // POST: Bookings/ChooseApartment
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChooseApartment(PreBookingViewModel preBooking)
+        {
+            preBooking.ApartmentId = Guid.Parse(Request.Form["apartmentId"]);
+            ViewBag.preBooking = preBooking;
+            
+            return RedirectToAction("Create", new 
+            {
+                dateStart = preBooking.DateStart,
+                dateEnd = preBooking.DateEnd,
+                adultsNumber = preBooking.AdultsNumber,
+                apartmentId = preBooking.ApartmentId.Value 
+            });
+        }
+
+        // GET: Bookings/Create
+        public async Task<IActionResult> Create(DateTime dateStart,DateTime dateEnd, int adultsNumber, Guid apartmentId )
+        {
             ViewData["EnrollmentTypeId"] = new SelectList(_context.EnrollmentTypes, "EnrollmentTypeId", "Name");
             ViewData["GenderId"] = new SelectList(_context.Genders, "GenderId", "GenderName");
-            return View();
+            
+            BookingViewModel booking = new BookingViewModel
+            {
+                DateStart = dateStart,
+                DateEnd = dateEnd,
+                AdultsNumber = adultsNumber,
+                ApartmentId = apartmentId
+            };
+
+            return View(booking);
         }
 
         // POST: Bookings/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GuestId,Discont,FirtstName,LastName,IdNumber,Country,BirthDate,GenderId,DateStart,DateEnd,AdultsNumber,ChildrenNumber,BookingOnly,PrePaid,ApartmentId,EnrollmentTypeId")] BookingViewModel bookingViewModel)
+        public async Task<IActionResult> Create( [Bind("GuestId,Discont,FirtstName,LastName,IdNumber,Country,BirthDate,GenderId,DateStart,DateEnd,AdultsNumber,ChildrenNumber,BookingOnly,PrePaid,ApartmentId,EnrollmentTypeId")] BookingViewModel bookingViewModel)
         {
             var userId = _userManager.GetUserId(User);
             ModelState.Clear();
@@ -57,7 +111,7 @@ namespace HotelManagementSystem
                     ChildrenNumber = bookingViewModel.ChildrenNumber,
                     BookingOnly = true,
                     PrePaid = true,
-                    ApartmentId = _context.Apartments.FirstOrDefault().ApartmentId,
+                    ApartmentId = bookingViewModel.ApartmentId,
                     EnrollmentTypeId = _context.EnrollmentTypes.FirstOrDefault().EnrollmentTypeId,
                     EnrollmentStatusId = _context.EnrollmentStatuses.FirstOrDefault().EnrollmentStatusId
                 };
@@ -84,9 +138,7 @@ namespace HotelManagementSystem
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApartmentId"] = new SelectList(
-                    _context.Apartments, "ApartmentId", "ApartmentName", bookingViewModel.ApartmentId);
-            ViewData["EnrollmentTypeId"] = new SelectList(
+           ViewData["EnrollmentTypeId"] = new SelectList(
                     _context.EnrollmentTypes, "EnrollmentTypeId", "Name", bookingViewModel.EnrollmentTypeId);
             ViewData["GenderId"] = new SelectList(
                     _context.Genders, "GenderId", "GenderName", bookingViewModel.GenderId);
@@ -102,8 +154,7 @@ namespace HotelManagementSystem
             {
                 return NotFound();
             }
-            ViewData["ApartmentId"] = new SelectList(
-                    _context.Apartments, "ApartmentId", "ApartmentName", enr.ApartmentId);
+
             ViewData["EnrollmentTypeId"] = new SelectList(
                     _context.EnrollmentTypes, "EnrollmentTypeId", "Name", enr.EnrollmentTypeId);
 

@@ -17,20 +17,25 @@
                                 <div class="col-md-1"></div>
                                 <div class="col-md-4">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                    <input type="hidden" asp-for="ApartmentId" />
+                                    <input type="hidden" asp-for="ApartmentId"/>
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="ApartmentTitle" class="form-control" />
+                                        <label asp-for="ApartmentTitle" class="control-label">Title</label>
+                                        <span asp-validation-for="ApartmentTitle" class="text-danger"></span>
+                                    </div>
                                     <div class="form-floating mb-3">
                                         <input asp-for="ApartmentName" class="form-control" />
-                                        <label asp-for="ApartmentName" class="control-label"></label>
+                                        <label asp-for="ApartmentName" class="control-label">Number</label>
                                         <span asp-validation-for="ApartmentName" class="text-danger"></span>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input asp-for="ImageUrl" class="form-control" />
-                                        <label asp-for="ImageUrl" class="control-label"></label>
+                                        <label asp-for="ImageUrl" class="control-label">Image Url</label>
                                         <span asp-validation-for="ImageUrl" class="text-danger"></span>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <textarea asp-for="Description" class="form-control" placeholder="Description" style="height: 140px"></textarea>
-                                        <label asp-for="Description" class="control-label"></label>
+                                        <label asp-for="Description" class="control-label">Description</label>
                                         <span asp-validation-for="Description" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -38,22 +43,22 @@
                                 <div class="col-md-4">
                                     <div class="form-floating mb-3">
                                         <input asp-for="DailyPrice" type="number" step="0.01" class="form-control" />
-                                        <label asp-for="DailyPrice" class="control-label"></label>
+                                        <label asp-for="DailyPrice" class="control-label">Daily Price</label>
                                         <span asp-validation-for="DailyPrice" class="text-danger"></span>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <select asp-for="ApartmentTypeId" class="form-select" asp-items="ViewBag.ApartmentTypeId"></select>
-                                        <label asp-for="ApartmentTypeId" class="control-label"></label>
+                                        <label asp-for="ApartmentTypeId" class="control-label">Apartment Type</label>
                                         <span asp-validation-for="ApartmentTypeId" class="text-danger"></span>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <select asp-for="ApartmentCategoryId" class="form-select" asp-items="ViewBag.ApartmentCategoryId"></select>
-                                        <label asp-for="ApartmentCategoryId" class="control-label"></label>
+                                        <label asp-for="ApartmentCategoryId" class="control-label">Apartment Category</label>
                                         <span asp-validation-for="ApartmentCategoryId" class="text-danger"></span>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <select asp-for="ApartmentStatusId" class="form-select" asp-items="ViewBag.ApartmentStatusId"></select>
-                                        <label asp-for="ApartmentStatusId" class="control-label"></label>
+                                        <label asp-for="ApartmentStatusId" class="control-label">Apartment Status</label>
                                         <span asp-validation-for="ApartmentStatusId" class="text-danger"></span>
                                     </div>
                                 </div>

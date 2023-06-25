@@ -28,7 +28,7 @@ namespace HotelManagementSystem.Models
         public Gender Gender {get; set;}
 
         //---------------------------------------------------------------
-
+        [Required(ErrorMessage = "Please select the arrival date")]
         public DateTime DateStart {get; set;}
 
         [Required(ErrorMessage = "Please select the departure date")]

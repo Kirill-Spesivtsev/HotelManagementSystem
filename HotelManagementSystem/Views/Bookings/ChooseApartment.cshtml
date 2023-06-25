@@ -1,0 +1,53 @@
+﻿@model PreBookingViewModel
+
+<section class="full-height">
+    <div class="apartments-cards">
+        <h1 class="centered-content">Apartments</h1>
+        <div class="row form-row">
+            <div class="col-md-10">
+                <div class="container-border p-3 mt-4 mb-4">
+                    <div class="container-body">
+
+                        <div class="media-container-column">
+                            <div class="row first-row">
+                                @foreach (var item in ViewBag.FilteredApartments)
+                                {
+                                    var imurl = item.ImageUrl ?? "/images/rooms/def_room.jpg";
+                                    
+                        
+                                    <div class="card first-child square-room-card">
+                                        <div class="card-wrapper">
+                                            <div class="card-img">
+                                                
+                                                <form asp-action="ChooseApartment" method="post">
+                                                        <input asp-for="ApartmentId" type="hidden" value="@item.ApartmentId" name="ApartmentId">
+                                                        <input asp-for="DateStart" type="hidden" value="@Model.DateStart" name="DateStart">
+                                                        <input asp-for="DateEnd" type="hidden" value="@Model.DateEnd" name="DateEnd">
+                                                        <input asp-for="AdultsNumber" type="hidden" value="@Model.AdultsNumber" name="AdultsNumber">
+                                                        <input type="image" class="submit-img" src="@imurl" alt="Choose Apartment" style="background-size: 100% 100%;" />
+                                                </form>
+                                            </div>
+                                            <div class="card-box caption def-white">
+                                                <p class="def-text card-title def-fonts-style def-lighter display-4">
+                                                    @item.ApartmentTitle
+                                                </p>
+                                                <p class="def-text card-title def-fonts-style def-lighter display-4">
+                                                    @(item.ApartmentType.TypeName)-bed
+                                                </p>
+                                                <p class="def-text price def-fonts-style def-lighter display-4">
+                                                    FROM @(item.DailyPrice)$
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>

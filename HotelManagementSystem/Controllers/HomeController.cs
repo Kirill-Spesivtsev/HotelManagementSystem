@@ -3,6 +3,7 @@ using HotelManagementSystem.Data;
 using HotelManagementSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Globalization;
 
@@ -38,6 +39,17 @@ namespace HotelManagementSystem.Controllers
             var guests = int.Parse(Request.Form["guests"]);
             return RedirectToAction("ChooseApartment", "Bookings", 
                 new{dateStart = start, dateEnd = end, guests = guests});
+        }
+
+        public IActionResult ApartmentCards()
+        {
+            //var validApartments = _context.Apartments.Include(q => q.ApartmentType);
+            
+            var apartments = _context.Apartments.Include(q => q.ApartmentType).ToList();
+
+            ViewBag.Apartments = apartments;
+ 
+            return View(apartments);
         }
 
 

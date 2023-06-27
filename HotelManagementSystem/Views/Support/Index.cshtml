@@ -1,0 +1,44 @@
+﻿
+<section class="full-height">
+    <div class="row form-row">
+        <div class="col-md-10">
+            <div class="container-border p-3 mt-4 mb-4">
+                <div class="container-body">
+                    <h3 class="mb-2 pt-2 text-center">Support Chat</h3>
+                    <hr />
+
+                    <div class="container">
+                        <div class="input-group mb-3 w-100">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Username: </span>
+                            </div>
+                            <input type="text" class="form-control" id="userInput" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon2">Message: </span>
+                            </div>
+                            <input type="text" class="form-control" id="messageInput" aria-describedby="basic-addon2">
+                        </div>
+                        <div class="row p-1 mb-3">
+                            <div class="col-6">
+                                <input class="btn btn-primary" type="button" id="sendButton" value="Send Message" />
+                            </div>
+                        </div>
+                        <div class="row p-1 justify-content-center mb-3">
+                            <div class="col-8">
+                                <ul class="list-group" id="messagesList"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+
+

@@ -43,6 +43,10 @@ body {
     float: right;
 }
 
+.leaned-center {
+    float: right;
+}
+
 .leaned-left {
     float: left;
 }
@@ -967,3 +971,9 @@ nav .def-section-btn {
     font-weight: 600 !important;
 }
 
+.chat-msg-block {
+    width: fit-content;
+    block-size: fit-content;
+    padding: 0.2rem 0.4rem 0.4rem 0.4rem !important;
+    margin-bottom: 0px !important;
+}

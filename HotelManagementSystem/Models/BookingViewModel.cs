@@ -6,12 +6,12 @@ namespace HotelManagementSystem.Models
     public class BookingViewModel
     {
         [Key]
-        public int BookingId {get; set;}
+        public Guid BookingId {get; set;}
 
         public double Discont {get; set;} = 5d;
 
         [Required(ErrorMessage ="Please enter your first name")]
-        public string FirtstName {get; set;}
+        public string FirstName {get; set;}
 
         [Required(ErrorMessage ="Please enter your last name")]
         public string LastName {get; set;}

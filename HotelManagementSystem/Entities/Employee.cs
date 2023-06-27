@@ -3,15 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HotelManagementSystem.Models
 {
-    public class Guest
+    public class Employee
     {
         [Key]
-        public Guid GuestId {get; set;}
+        public Guid EmployeeId {get; set;}
 
         [MaxLength(15)]
         public string? PhoneNumber {get; set;}
-
-        public double Discont {get; set;} = 5d;
 
         [Required(ErrorMessage ="Please enter your first name")]
         public string FirstName {get; set;}
@@ -19,12 +17,16 @@ namespace HotelManagementSystem.Models
         [Required(ErrorMessage ="Please enter your last name")]
         public string LastName {get; set;}
 
-        [Required(ErrorMessage ="Please enter passport number")]
-        public string IdNumber {get; set;}
+        public string? Education {get; set;}
+
+        public string? Position {get; set;}
 
         public string? Country {get; set;}
 
         public DateTime? BirthDate {get; set;}
+
+        [Required(ErrorMessage ="Please enter passport number")]
+        public string IdNumber {get; set;}
 
         [Required(ErrorMessage ="Please select your gender")]
         public int GenderId {get; set;}

@@ -7,7 +7,7 @@ namespace HotelManagementSystem.Entities
     {
         public bool NewsletterSubscriber {get;set;} = false;
 
-        [MaxLength(20)]
+
         public string? User {get;set;} = string.Empty;
     }
 }

@@ -1,6 +1,7 @@
 using EmailService;
 using HotelManagementSystem.Data;
 using HotelManagementSystem.Entities;
+using HotelManagementSystem.Hubs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
@@ -50,6 +51,7 @@ builder.Services.AddSingleton(emailConfig);
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddSignalR();
 
 builder.Host.ConfigureLogging(logging =>
 {
@@ -80,10 +82,15 @@ app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
+
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+app.MapHub<ChatHub>("/chatHub");
+
+
 
 app.UseCoreAdminCustomUrl(adServiceName);
 app.UseCoreAdminCustomTitle(adServiceName);

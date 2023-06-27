@@ -1,0 +1,48 @@
+﻿@model List<Apartment>
+
+<section class="full-height">
+    <div class="apartments-cards">
+        <h1 class="centered-content">Apartments</h1>
+        <div class="row form-row">
+            <div class="col-md-10">
+                <div class="container-border p-3 mt-4 mb-4">
+                    <div class="container-body">
+
+                        <div class="media-container-column">
+                            <div class="row first-row">
+                                @foreach (var item in @Model)
+                                {
+                                    var imurl = item.ImageUrl ?? "/images/rooms/def_room.jpg";
+                                    
+                        
+                                    <div class="card first-child square-room-card">
+                                        <div class="card-wrapper">
+                                            <div class="card-img">
+
+                                            <img class="submit-img" src="@imurl" alt="Choose Apartment" style="background-size: 100% 100%;" />
+
+                                            </div>
+                                            <div class="card-box caption def-white">
+                                                <p class="def-text card-title def-fonts-style def-lighter display-4">
+                                                    @item.ApartmentTitle
+                                                </p>
+                                                <p class="def-text card-title def-fonts-style def-lighter display-4">
+                                                    @(item.ApartmentType.TypeName)-bed
+                                                </p>
+                                                <p class="def-text price def-fonts-style def-lighter display-4">
+                                                    FROM @(item.DailyPrice)$
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ERS Hotels</title>
+    <title>@ViewData["Title"] - HMS Hotels</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link href="https://cdn.syncfusion.com/ej2/20.1.55/bootstrap5.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -24,7 +24,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-light nav-gradient nav-shadowed front-navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ERS Hotels</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HMS Hotels</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,7 +35,13 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Booking</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ApartmentCards">Apartments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Support" asp-action="Index">Support</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Redirect" asp-action="Management">Management</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -54,7 +60,7 @@
             <div class="row justify-content-center def-white">
                 <div class="col-12">
                     <p class="def-text mb-0 def-fonts-style align-center display-7">
-                        ERS Hotels
+                        HMS Hotels
                     </p>
                 </div>
             </div>
@@ -65,7 +71,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/bootstrap-datepicker.js"></script>
     <script src="~/js/booking-datepicker.min.js"></script>
     <ejs-scripts></ejs-scripts>

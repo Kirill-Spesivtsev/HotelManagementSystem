@@ -56,9 +56,12 @@ namespace HotelManagementSystem.Controllers
         // GET: Apartments/Create
         public IActionResult Create()
         {
-            ViewData["ApartmentCategoryId"] = new SelectList(_context.ApartmentCategories, "ApartmentCategoryId", "CategoryName");
-            ViewData["ApartmentStatusId"] = new SelectList(_context.ApartmentStatuses, "ApartmentStatusId", "StatusName");
-            ViewData["ApartmentTypeId"] = new SelectList(_context.ApartmentTypes, "ApartmentTypeId", "TypeName");
+            ViewData["ApartmentCategoryId"] = new SelectList(
+                _context.ApartmentCategories, "ApartmentCategoryId", "CategoryName");
+            ViewData["ApartmentStatusId"] = new SelectList(
+                _context.ApartmentStatuses, "ApartmentStatusId", "StatusName");
+            ViewData["ApartmentTypeId"] = new SelectList(
+                _context.ApartmentTypes, "ApartmentTypeId", "TypeName");
             return View();
         }
 
@@ -74,9 +77,12 @@ namespace HotelManagementSystem.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApartmentCategoryId"] = new SelectList(_context.ApartmentCategories, "ApartmentCategoryId", "CategoryName", apartment.ApartmentCategoryId);
-            ViewData["ApartmentStatusId"] = new SelectList(_context.ApartmentStatuses, "ApartmentStatusId", "StatusName", apartment.ApartmentStatusId);
-            ViewData["ApartmentTypeId"] = new SelectList(_context.ApartmentTypes, "ApartmentTypeId", "TypeName", apartment.ApartmentTypeId);
+            ViewData["ApartmentCategoryId"] = new SelectList(
+                _context.ApartmentCategories, "ApartmentCategoryId", "CategoryName", apartment.ApartmentCategoryId);
+            ViewData["ApartmentStatusId"] = new SelectList(
+                _context.ApartmentStatuses, "ApartmentStatusId", "StatusName", apartment.ApartmentStatusId);
+            ViewData["ApartmentTypeId"] = new SelectList(
+                _context.ApartmentTypes, "ApartmentTypeId", "TypeName", apartment.ApartmentTypeId);
             return View(apartment);
         }
 
@@ -93,16 +99,19 @@ namespace HotelManagementSystem.Controllers
             {
                 return NotFound();
             }
-            ViewData["ApartmentCategoryId"] = new SelectList(_context.ApartmentCategories, "ApartmentCategoryId", "CategoryName", apartment.ApartmentCategoryId);
-            ViewData["ApartmentStatusId"] = new SelectList(_context.ApartmentStatuses, "ApartmentStatusId", "StatusName", apartment.ApartmentStatusId);
-            ViewData["ApartmentTypeId"] = new SelectList(_context.ApartmentTypes, "ApartmentTypeId", "TypeName", apartment.ApartmentTypeId);
+            ViewData["ApartmentCategoryId"] = new SelectList(
+                _context.ApartmentCategories, "ApartmentCategoryId", "CategoryName", apartment.ApartmentCategoryId);
+            ViewData["ApartmentStatusId"] = new SelectList(
+                _context.ApartmentStatuses, "ApartmentStatusId", "StatusName", apartment.ApartmentStatusId);
+            ViewData["ApartmentTypeId"] = new SelectList(
+                _context.ApartmentTypes, "ApartmentTypeId", "TypeName", apartment.ApartmentTypeId);
             return View(apartment);
         }
 
         // POST: Apartments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid? id, [Bind("ApartmentId,ApartmentName,ApartmentTitle,Description,ImageUrl,DailyPrice,ApartmentTypeId,ApartmentCategoryId,ApartmentStatusId")] Apartment apartment)
+        public async Task<IActionResult> Edit(Guid? id, [Bind] Apartment apartment)
         {
             if (id != apartment.ApartmentId)
             {
@@ -130,9 +139,12 @@ namespace HotelManagementSystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApartmentCategoryId"] = new SelectList(_context.ApartmentCategories, "ApartmentCategoryId", "CategoryName", apartment.ApartmentCategoryId);
-            ViewData["ApartmentStatusId"] = new SelectList(_context.ApartmentStatuses, "ApartmentStatusId", "StatusName", apartment.ApartmentStatusId);
-            ViewData["ApartmentTypeId"] = new SelectList(_context.ApartmentTypes, "ApartmentTypeId", "TypeName", apartment.ApartmentTypeId);
+            ViewData["ApartmentCategoryId"] = new SelectList(
+                _context.ApartmentCategories, "ApartmentCategoryId", "CategoryName", apartment.ApartmentCategoryId);
+            ViewData["ApartmentStatusId"] = new SelectList(
+                _context.ApartmentStatuses, "ApartmentStatusId", "StatusName", apartment.ApartmentStatusId);
+            ViewData["ApartmentTypeId"] = new SelectList(
+                _context.ApartmentTypes, "ApartmentTypeId", "TypeName", apartment.ApartmentTypeId);
             return View(apartment);
         }
 

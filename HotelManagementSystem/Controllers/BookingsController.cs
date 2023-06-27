@@ -20,7 +20,10 @@ namespace HotelManagementSystem
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public BookingsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, ILogger<BookingsController> logger)
+        public BookingsController(
+            ApplicationDbContext context, 
+            UserManager<ApplicationUser> userManager, 
+            ILogger<BookingsController> logger)
         {
             _context = context;
             _userManager = userManager;
@@ -81,7 +84,8 @@ namespace HotelManagementSystem
         {
             ViewData["EnrollmentTypeId"] = new SelectList(_context.EnrollmentTypes, "EnrollmentTypeId", "Name");
             ViewData["GenderId"] = new SelectList(_context.Genders, "GenderId", "GenderName");
-            
+            //ViewBag.DateStart = dateStart;
+            //ViewBag.DateEnd = dateEnd;
             BookingViewModel booking = new BookingViewModel
             {
                 DateStart = dateStart,
@@ -96,9 +100,9 @@ namespace HotelManagementSystem
         // POST: Bookings/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( [Bind("GuestId,Discont,FirtstName,LastName,IdNumber,Country,BirthDate,GenderId,DateStart,DateEnd,AdultsNumber,ChildrenNumber,BookingOnly,PrePaid,ApartmentId,EnrollmentTypeId")] BookingViewModel bookingViewModel)
+        public async Task<IActionResult> Create( [Bind] BookingViewModel bookingViewModel)
         {
-            var userId = _userManager.GetUserId(User);
+            var user = await _userManager.GetUserAsync(User);
             ModelState.Clear();
             if (ModelState.IsValid)
             {
@@ -118,11 +122,10 @@ namespace HotelManagementSystem
                 var guest = new Guest
                 {
                     GuestId = Guid.NewGuid(),
-                    FirtstName = bookingViewModel.FirtstName,
+                    FirstName = bookingViewModel.FirstName,
                     LastName = bookingViewModel.LastName,
                     IdNumber = bookingViewModel.IdNumber,
                     Country = bookingViewModel.Country,
-                    User = userId,
                     BirthDate = bookingViewModel.BirthDate,
                     GenderId = bookingViewModel.GenderId,
                 };
@@ -131,12 +134,12 @@ namespace HotelManagementSystem
                     EnrollmentId = enrollment.EnrollmentId,
                     GuestId = guest.GuestId,
                 };
-
+                user.User = guest.GuestId.ToString();
                 _context.Add(enrollment);
                 _context.Add(guest);
                 _context.Add(eg);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Home");
             }
            ViewData["EnrollmentTypeId"] = new SelectList(
                     _context.EnrollmentTypes, "EnrollmentTypeId", "Name", bookingViewModel.EnrollmentTypeId);

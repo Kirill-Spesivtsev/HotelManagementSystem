@@ -10,7 +10,7 @@
     }
 
         .section-apartments .card .card-img img {
-            transition: all .3s;
+            transition: all .25s;
         }
 
         .section-apartments .card .card-img:hover img {
@@ -507,7 +507,7 @@
     }
 
         .home-section-features .wrapper img {
-            transition: all .5s;
+            transition: all .25s;
         }
 
         .home-section-features .wrapper:hover img {
@@ -679,7 +679,7 @@
     }
 
         .apartments-cards .card .card-img img {
-            transition: all .5s;
+            transition: all .25s;
         }
 
         .apartments-cards .card .card-img:hover img {
@@ -690,7 +690,7 @@
         .apartments-cards .card .card-img .submit-img {
             height: 337px;
             width: 337px;
-            transition: all .5s;
+            transition: all .25s;
         }
 
         .apartments-cards .card .card-img:hover .submit-img {

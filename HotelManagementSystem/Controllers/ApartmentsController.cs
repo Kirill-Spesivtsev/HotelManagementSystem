@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HotelManagementSystem.Data;
-using HotelManagementSystem.Models;
+using HotelManagementSystem.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 
 namespace HotelManagementSystem.Controllers
@@ -172,7 +172,7 @@ namespace HotelManagementSystem.Controllers
         // POST: Apartments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Apartments == null)
             {

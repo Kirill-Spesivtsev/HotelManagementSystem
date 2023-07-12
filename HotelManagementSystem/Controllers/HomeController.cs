@@ -1,6 +1,6 @@
 ﻿using EmailService;
 using HotelManagementSystem.Data;
-using HotelManagementSystem.Models;
+using HotelManagementSystem.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

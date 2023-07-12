@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EmailService
 {
-    public class Message
+    public class EmailMessage
     {
         public List<MailboxAddress> To { get; set; }
         public string Subject { get; set; }
@@ -17,7 +17,7 @@ namespace EmailService
 
         public IFormFileCollection Attachments { get; set; }
 
-        public Message(IEnumerable<string> to, string subject, string content, IFormFileCollection attachments)
+        public EmailMessage(IEnumerable<string> to, string subject, string content, IFormFileCollection attachments)
         {
             To = new List<MailboxAddress>();
 

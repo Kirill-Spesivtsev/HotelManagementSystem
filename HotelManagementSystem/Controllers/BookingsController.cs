@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HotelManagementSystem.Data;
-using HotelManagementSystem.Models;
+using HotelManagementSystem.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using HotelManagementSystem.Entities;
 using Microsoft.AspNetCore.Authorization;

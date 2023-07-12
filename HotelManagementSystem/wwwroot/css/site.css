@@ -191,7 +191,8 @@ nav.navbar {
 }
 
 .full-height {
-    min-height: 40em;
+    /*min-height: 40em;*/
+    min-height: 100vh;
 }
 
 .card-service{

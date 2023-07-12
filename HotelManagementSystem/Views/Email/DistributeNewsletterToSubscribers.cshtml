@@ -1,0 +1,45 @@
+﻿@using HotelManagementSystem.ViewModels
+
+@model SimpleMessageViewModel;
+
+<section class="full-height">
+    <div class="row form-row">
+        <div class="col-md-10">
+            <div class="container-border p-3 mt-4 mb-4">
+                <div class="container-body">
+                    <h3 class="mb-2 pt-2 text-center">Distribute Newsletter Mail</h3>
+                    <hr />
+                    <div class="container">
+                        <form asp-action="DistributeNewsletterToSubscribers" asp-controller="Email">
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+									<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+									<div class="form-floating mb-3">
+                                        <input asp-for="Title" class="form-control" />
+                                        <label asp-for="Title" class="control-label"></label>
+                                        <span asp-validation-for="Title" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <textarea asp-for="Text" class="form-control" style="height: 300px"></textarea>
+										<label asp-for="Text" class="control-label"></label>
+                                        <span asp-validation-for="Text" class="text-danger"></span>
+                                    </div>
+                                    <div class="centered-content mt-5 mb-3">
+                                        <input type="submit" value="Distribute mail" class="btn btn-success w-25"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+

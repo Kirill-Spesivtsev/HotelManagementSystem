@@ -17,28 +17,28 @@ namespace EmailService
             _emailConfig = emailConfig;
         }
 
-        public void SendEmail(Message message)
+        public void SendEmail(EmailMessage message)
         {
             var emailMessage = CreateEmailMessage(message);
 
             Send(emailMessage);
         }
 
-        public async Task SendEmailAsync(Message message)
+        public async Task SendEmailAsync(EmailMessage message)
         {
             var mailMessage = CreateEmailMessage(message);
 
             await SendAsync(mailMessage);
         }
 
-        private MimeMessage CreateEmailMessage(Message message)
+        private MimeMessage CreateEmailMessage(EmailMessage message)
         {
             var emailMessage = new MimeMessage();
             emailMessage.To.AddRange(message.To);
             emailMessage.Subject = message.Subject;
             emailMessage.From.Add(new MailboxAddress(message.Subject, _emailConfig.From));
 
-            var bodyBuilder = new BodyBuilder { HtmlBody = string.Format("<h2 style='color:red;'>{0}</h2>", message.Content) };
+            var bodyBuilder = new BodyBuilder { HtmlBody = string.Format("{0}", message.Content) };
 
             if (message.Attachments != null && message.Attachments.Any())
             {

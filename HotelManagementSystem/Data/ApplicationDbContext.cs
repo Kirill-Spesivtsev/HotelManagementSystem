@@ -1,15 +1,23 @@
-﻿using HotelManagementSystem.Entities;
-using HotelManagementSystem.Models;
+﻿using EntityFrameworkCore.EncryptColumn.Interfaces;
+using EntityFrameworkCore.EncryptColumn;
+using HotelManagementSystem.Entities;
+using HotelManagementSystem.ViewModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using HotelManagementSystem.Migrations;
+using EntityFrameworkCore.EncryptColumn.Util;
+using EntityFrameworkCore.EncryptColumn.Extension;
 
 namespace HotelManagementSystem.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        private readonly IEncryptionProvider _provider;
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            this._provider = new GenerateEncryptionProvider("d664adc09aa37b75e124cd64c7b33b30");
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
@@ -29,10 +37,16 @@ namespace HotelManagementSystem.Data
         public DbSet<ServiceType> ServiceTypes { get; set; }
         public DbSet<ServicePrice> ServicePrices { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.UseEncryption(this._provider);
+            base.OnModelCreating(builder);
+        }
 
 
 
-       
+
+
 
     }
 }

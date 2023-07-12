@@ -1,4 +1,4 @@
-﻿@model HotelManagementSystem.Models.BookingViewModel
+﻿@model HotelManagementSystem.ViewModels.BookingViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -71,7 +71,13 @@
                                         <input type="text" value="@Model.DateStart.ToShortDateString()" readonly class="form-control" />
                                         <label class="control-label">Check Out</label>
                                     </div>
-                                </div>
+                                        
+                                        <input asp-for="PersonalDataProc" type="checkbox" />
+                                        <label asp-for="PersonalDataProc">I agree to my personal data processing</label>
+                                        
+                                        
+                                    
+                                </>
                                 <div class="col-md-1"></div>
                             </div>
                             <div class="centered-content mt-5 mb-3">

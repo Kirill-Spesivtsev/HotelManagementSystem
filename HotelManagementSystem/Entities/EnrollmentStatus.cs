@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
-namespace HotelManagementSystem.Models
+namespace HotelManagementSystem.ViewModels
 {
     public class EnrollmentStatus
     {

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
-namespace HotelManagementSystem.Models
+namespace HotelManagementSystem.ViewModels
 {
     public class BookingViewModel
     {
@@ -42,6 +42,9 @@ namespace HotelManagementSystem.Models
         public bool BookingOnly {get; set;} = false;
 
         public bool PrePaid {get; set;} = false;
+
+        [Required(ErrorMessage = "You should agree to processing of personal data to continue")]
+        public bool PersonalDataProc {get; set;} = false;
 
         public Guid ApartmentId {get; set;}
         public Apartment Apartment {get; set;}

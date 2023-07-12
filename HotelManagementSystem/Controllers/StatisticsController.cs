@@ -1,6 +1,6 @@
 ﻿using HotelManagementSystem.Data;
 using HotelManagementSystem.Entities;
-using HotelManagementSystem.Models;
+using HotelManagementSystem.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

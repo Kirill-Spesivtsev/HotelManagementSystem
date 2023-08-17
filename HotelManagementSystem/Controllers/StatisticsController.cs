@@ -31,9 +31,7 @@ namespace HotelManagementSystem.Controllers
                 .Where(y => y.DateStart >= StartDate && y.DateStart <= EndDate)
                 .ToList();
 
-            double totalIncome = 0;//SelectedTransactions
-
-            ViewBag.TotalIncome = totalIncome.ToString("F") + " $";
+            
 
 
             CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
@@ -51,20 +49,38 @@ namespace HotelManagementSystem.Controllers
                 })
                 .ToList();
 
+           
 
             string[] LastData = Enumerable.Range(0, 365)
                 .Select(i => StartDate.AddDays(i).ToString("dd-MM-yyyy"))
                 .ToArray();
 
-            ViewBag.SplineChartData = 
-                    from day in LastData
-                    join income in incomeStatistics on day equals income.day into dayIncomeJoined
-                    from income in dayIncomeJoined.DefaultIfEmpty()
-                    select new
-                    {
-                        day = day,
-                        income = income == null ? 0 : income.income,
-                    };
+            List<PlotData> dayProfits = new List<PlotData>(365);
+            for(int i = 0;i<365;i++)
+            {
+                dayProfits[i].day = StartDate.AddDays(i).ToString("dd-MM-yyyy");
+                dayProfits[i].income = 0;
+            }
+            foreach (var enr in _context.Enrollments)
+            {
+                DateTime cDate;
+                for (int i = 0; i < (enr.DateEnd - enr.DateStart).Days; i++)
+                {
+                    cDate = enr.DateStart.AddDays(i);
+                    if(cDate >= StartDate)
+                    dayProfits.Where(e => e.day == cDate.ToString("dd-MM-yyyy"))
+                            .ToList().ForEach(q => q.day += 1);
+                }
+            } 
+            ViewBag.SplineChartData = dayProfits;
+
+            ViewBag.MostProfitableRooms = _context.Enrollments
+                .GroupBy(r=>r.Apartment)
+                .Select(group => new 
+                {
+                    Key = group.Key, 
+                    Value = group.Sum(q => q.Apartment.DailyPrice * (q.DateEnd - q.DateStart).TotalDays)
+                });
 
             return View();
         }
